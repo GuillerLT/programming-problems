@@ -4,7 +4,7 @@
 
 template <typename RandomAccessContainer, typename Manipulator>
 class segment_tree {
-  using Value = decltype(std::declval<Manipulator>().entity());
+  using Value = decltype(std::declval<Manipulator>().identity());
 
  private:
   Manipulator manipulator;
@@ -26,11 +26,11 @@ class segment_tree {
   }
 
   Value query(size_t const l, size_t const r, size_t const i,
-                     size_t const lquery, size_t const rquery) const {
+              size_t const lquery, size_t const rquery) const {
     if (lquery <= l && rquery >= r) {
       return values[i];
     } else if (rquery < l || lquery > r) {
-      return manipulator.entity();
+      return manipulator.identity();
     } else {
       size_t const m = l + (r - l) / 2;
       return manipulator.query(query(l, m, i * 2 + 1, lquery, rquery),
@@ -42,7 +42,7 @@ class segment_tree {
   segment_tree(RandomAccessContainer const& randomAccessContainer,
                Manipulator const& manipulator)
       : manipulator(manipulator), size(randomAccessContainer.size() - 1) {
-    values.resize((size+1) << 2);
+    values.resize((size + 1) << 2);
     compute(0, size, 0, randomAccessContainer);
   }
 
@@ -68,7 +68,7 @@ class segment_tree_manipulator {
     return tiii;
   }
   tuple<int, int, int> query(tuple<int, int, int> const& tiii1,
-                               tuple<int, int, int> const& tiii2) const {
+                             tuple<int, int, int> const& tiii2) const {
     tuple<int, int, int> tiii;
     int const tmp = min(get<1>(tiii1), get<2>(tiii2));
     get<0>(tiii) = get<0>(tiii1) + get<0>(tiii2) + 2 * tmp;
@@ -76,7 +76,7 @@ class segment_tree_manipulator {
     get<2>(tiii) = get<2>(tiii1) + get<2>(tiii2) - tmp;
     return tiii;
   }
-  tuple<int, int, int> entity() const { return make_tuple(0, 0, 0); }
+  tuple<int, int, int> identity() const { return make_tuple(0, 0, 0); }
 };
 
 int main() {

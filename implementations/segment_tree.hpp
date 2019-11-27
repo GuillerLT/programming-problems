@@ -33,14 +33,15 @@ namespace glt {
  */
 template <typename RandomAccessContainer, typename Manipulator>
 class segment_tree {
- private:
   using Value = decltype(std::declval<Manipulator>().identity());
+
+ private:
   Manipulator manipulator;
-  std::size_t const size;
+  std::size_t size;
   std::vector<Value> values;
 
-  Value const& compute(size_t const l, size_t const r, size_t const i,
-                       RandomAccessContainer const& randomAccessContainer) {
+  Value const& compute(RandomAccessContainer const& randomAccessContainer,
+                       size_t const l, size_t const r, size_t const i = 1) {
     Value& value = values[i];
     if (l == r) {
       // Leaf node
@@ -49,14 +50,14 @@ class segment_tree {
       // Non-leaf node
       size_t const m = l + (r - l) / 2;
       value = manipulator.query(
-          compute(l, m, i * 2 + 1, randomAccessContainer),
-          compute(m + 1, r, i * 2 + 2, randomAccessContainer));
+          compute(randomAccessContainer, l,     m, i << 1),
+          compute(randomAccessContainer, m + 1, r, i << 1 | 1));
     }
     return value;
   }
 
-  Value query(size_t const l, size_t const r, size_t const i,
-              size_t const lquery, size_t const rquery) const {
+  Value query(size_t const lquery, size_t const rquery,
+              size_t const l,      size_t const r, size_t const i = 1) const {
     if (lquery <= l && rquery >= r) {
       // Inside query range
       return values[i];
@@ -66,8 +67,8 @@ class segment_tree {
     } else {
       // Overlapping query range
       size_t const m = l + (r - l) / 2;
-      return manipulator.query(query(l, m, i * 2 + 1, lquery, rquery),
-                               query(m + 1, r, i * 2 + 2, lquery, rquery));
+      return manipulator.query(query(lquery, rquery, l,     m, i << 1),
+                               query(lquery, rquery, m + 1, r, i << 1 | 1));
     }
   }
 
@@ -76,15 +77,15 @@ class segment_tree {
                Manipulator const& manipulator)
       : manipulator(manipulator),
         size(randomAccessContainer.size()),
-        values(size << 2) {
+        values(randomAccessContainer.size() << 2) {
     // Eager initialization
-    compute(0, size - 1, 0, randomAccessContainer);
+    compute(randomAccessContainer, 0, size - 1);
   }
 
   // Preconditions:
   // - lquery <= rquery < size
   Value query(size_t const lquery, size_t const rquery) const {
-    return query(0, size - 1, 0, lquery, rquery);
+    return query(lquery, rquery, 0, size - 1);
   }
 };
 

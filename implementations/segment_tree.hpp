@@ -6,17 +6,17 @@
 
 namespace glt {
 
-/* Segment tree template class
+/* Segment Tree class
  * This implementation only allows for eager initialization and does not
- * support update operations yet.
+ * support later update operations yet.
  * More details of segment tree data structure are available on
  * https://cp-algorithms.com/data_structures/segment_tree.html
  *
  * Template parameters constraints
  * - RandomAccessContainer: Container from which the segment tree is built.
  *   - std::size_t size(): Returns the number of elements in the container.
- *   - T operator[](size_t): Returns the element at the specified position in
- *     the container.
+ *   - T operator[](std::size_t): Returns the element at the specified position
+ * in the container.
  * - Manipulator: Class that implements the methods to build and query the
  *   segment tree.
  *   - Copy constructible.
@@ -29,9 +29,9 @@ namespace glt {
  *     https://en.wikipedia.org/wiki/Identity_element
  *
  * Example of use
- * https://github.com/GuillerLT/competitive-programming/blob/master/problems/codeforces/00380/c.cpp
+ * https://github.com/GuillerLT/competitive-programming/blob/main/solutions/codeforces/00380/c.cpp
  */
-template <typename RandomAccessContainer, typename Manipulator>
+template <typename Manipulator, typename RandomAccessContainer>
 class segment_tree {
   using Value = decltype(std::declval<Manipulator>().identity());
 
@@ -40,24 +40,26 @@ class segment_tree {
   std::size_t size;
   std::vector<Value> values;
 
-  Value const& compute(RandomAccessContainer const& randomAccessContainer,
-                       size_t const l, size_t const r, size_t const i = 1) {
+  Value const& update(RandomAccessContainer const& randomAccessContainer,
+                      std::size_t const l, std::size_t const r,
+                      std::size_t const i = 1) {
     Value& value = values[i];
     if (l == r) {
       // Leaf node
       value = manipulator.query(randomAccessContainer[l]);
     } else {
       // Non-leaf node
-      size_t const m = l + (r - l) / 2;
+      std::size_t const m = l + (r - l) / 2;
       value = manipulator.query(
-          compute(randomAccessContainer, l,     m, i << 1),
-          compute(randomAccessContainer, m + 1, r, i << 1 | 1));
+          update(randomAccessContainer, l,     m, i << 1),
+          update(randomAccessContainer, m + 1, r, i << 1 | 1));
     }
     return value;
   }
 
-  Value query(size_t const lquery, size_t const rquery,
-              size_t const l,      size_t const r, size_t const i = 1) const {
+  Value query(std::size_t const lquery, std::size_t const rquery,
+              std::size_t const l,      std::size_t const r,
+              std::size_t const i = 1) const {
     if (lquery <= l && rquery >= r) {
       // Inside query range
       return values[i];
@@ -66,25 +68,25 @@ class segment_tree {
       return manipulator.identity();
     } else {
       // Overlapping query range
-      size_t const m = l + (r - l) / 2;
+      std::size_t const m = l + (r - l) / 2;
       return manipulator.query(query(lquery, rquery, l,     m, i << 1),
                                query(lquery, rquery, m + 1, r, i << 1 | 1));
     }
   }
 
  public:
-  segment_tree(RandomAccessContainer const& randomAccessContainer,
-               Manipulator const& manipulator)
+  segment_tree(Manipulator const& manipulator,
+               RandomAccessContainer const& randomAccessContainer)
       : manipulator(manipulator),
         size(randomAccessContainer.size()),
         values(randomAccessContainer.size() << 2) {
     // Eager initialization
-    compute(randomAccessContainer, 0, size - 1);
+    update(randomAccessContainer, 0, size - 1);
   }
 
   // Preconditions:
-  // - lquery <= rquery < size
-  Value query(size_t const lquery, size_t const rquery) const {
+  // - 0 <= lquery <= rquery < size
+  Value query(std::size_t const lquery, std::size_t const rquery) const {
     return query(lquery, rquery, 0, size - 1);
   }
 };

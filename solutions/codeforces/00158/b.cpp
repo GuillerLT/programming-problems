@@ -1,3 +1,7 @@
+/* Problemset 158 - Problem B
+ * https://codeforces.com/problemset/problem/158/B
+ */
+
 #include <iostream>
 #include <unordered_map>
 using namespace std;

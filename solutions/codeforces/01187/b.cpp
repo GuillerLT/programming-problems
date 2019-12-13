@@ -1,3 +1,7 @@
+/* Problemset 1187 - Problem B
+ * https://codeforces.com/problemset/problem/1187/B
+ */
+
 #include <iostream>
 #include <vector>
 

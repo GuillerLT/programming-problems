@@ -1,3 +1,7 @@
+/* Problemset 118 - Problem A
+ * https://codeforces.com/problemset/problem/118/A
+ */
+
 #include <iostream>
 #include <string>
 using namespace std;

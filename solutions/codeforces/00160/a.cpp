@@ -1,3 +1,7 @@
+/* Problemset 160 - Problem A
+ * https://codeforces.com/problemset/problem/160/A
+ */
+
 #include <iostream>
 #include <set>
 using namespace std;

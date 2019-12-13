@@ -1,3 +1,7 @@
+/* Problemset 1189 - Problem B
+ * https://codeforces.com/problemset/problem/1189/B
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <list>

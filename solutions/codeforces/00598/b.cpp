@@ -1,3 +1,7 @@
+/* Problemset 598 - Problem B
+ * https://codeforces.com/problemset/problem/598/B
+ */
+
 #include <algorithm>
 #include <iostream>
 

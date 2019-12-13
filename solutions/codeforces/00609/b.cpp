@@ -1,3 +1,7 @@
+/* Problemset 609 - Problem B
+ * https://codeforces.com/problemset/problem/609/B
+ */
+
 #include <iostream>
 #include <array>
 

@@ -1,3 +1,7 @@
+/* Problemset 231 - Problem A
+ * https://codeforces.com/problemset/problem/231/A
+ */
+
 #include <iostream>
 #include <vector>
 using namespace std;

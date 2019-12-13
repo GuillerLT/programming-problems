@@ -1,3 +1,7 @@
+/* Problemset 600 - Problem B
+ * https://codeforces.com/problemset/problem/600/B
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <vector>

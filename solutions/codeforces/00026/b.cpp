@@ -1,3 +1,7 @@
+/* Problemset 26 - Problem B
+ * https://codeforces.com/problemset/problem/26/B
+ */
+
 #include <iostream>
 #include <tuple>
 using namespace std;

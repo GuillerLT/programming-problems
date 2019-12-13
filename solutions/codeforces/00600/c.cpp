@@ -1,3 +1,7 @@
+/* Problemset 600 - Problem C
+ * https://codeforces.com/problemset/problem/600/C
+ */
+
 #include <array>
 #include <iostream>
 

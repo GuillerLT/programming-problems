@@ -1,3 +1,7 @@
+/* Problemset 23 - Problem A
+ * https://codeforces.com/problemset/problem/23/A
+ */
+
 #include <array>
 #include <iostream>
 

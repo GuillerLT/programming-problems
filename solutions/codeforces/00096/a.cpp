@@ -1,3 +1,7 @@
+/* Problemset 96 - Problem A
+ * https://codeforces.com/problemset/problem/96/A
+ */
+
 #include <iostream>
 using namespace std;
 

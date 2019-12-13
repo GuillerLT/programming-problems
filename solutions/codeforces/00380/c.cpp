@@ -1,3 +1,7 @@
+/* Problemset 380 - Problem C
+ * https://codeforces.com/problemset/problem/380/C
+ */
+
 #include <iostream>
 #include <tuple>
 #include <vector>

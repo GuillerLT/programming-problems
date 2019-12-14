@@ -1,3 +1,7 @@
+/* Contest LTIME69A - Problem TRICKYDL
+ * https://www.codechef.com/LTIME69A/problems/TRICKYDL
+ */
+
 #include <iostream>
 using namespace std;
 

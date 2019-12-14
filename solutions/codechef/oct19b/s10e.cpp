@@ -1,3 +1,7 @@
+/* Contest OCT19B - Problem S10E
+ * https://www.codechef.com/OCT19B/problems/S10E
+ */
+
 #include <array>
 #include <iostream>
 

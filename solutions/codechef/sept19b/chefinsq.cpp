@@ -1,3 +1,7 @@
+/* Contest SEPT19B - Problem CHEFINSQ
+ * https://www.codechef.com/SEPT19B/problems/CHEFINSQ
+ */
+
 #include <iostream>
 #include <map>
 

@@ -1,3 +1,7 @@
+/* Contest NOV19B - Problem SC31
+ * https://www.codechef.com/NOV19B/problems/SC31
+ */
+
 #include <array>
 #include <iostream>
 

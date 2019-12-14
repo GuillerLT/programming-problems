@@ -1,3 +1,7 @@
+/* Contest OCT19B - Problem SAKTAN
+ * https://www.codechef.com/OCT19B/problems/SAKTAN
+ */
+
 #include <array>
 #include <iostream>
 

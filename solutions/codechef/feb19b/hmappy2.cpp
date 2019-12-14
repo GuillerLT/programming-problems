@@ -1,3 +1,7 @@
+/* Contest FEB19B - Problem HMAPPY2
+ * https://www.codechef.com/FEB19B/problems/HMAPPY2
+ */
+
 #include <iostream>
 using namespace std;
 

@@ -1,3 +1,7 @@
+/* Contest APRIL19B - Problem STRCH
+ * https://www.codechef.com/APRIL19B/problems/STRCH
+ */
+
 #include <iostream>
 #include <vector>
 using namespace std;

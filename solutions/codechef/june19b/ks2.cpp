@@ -1,3 +1,7 @@
+/* Contest JUNE19B - Problem KS2
+ * https://www.codechef.com/JUNE19B/problems/KS2
+ */
+
 #include <iostream>
 using namespace std;
 

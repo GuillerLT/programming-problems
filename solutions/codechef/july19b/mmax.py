@@ -1,3 +1,6 @@
+# Contest JULY19B - Problem MMAX
+# https://www.codechef.com/JULY19B/problems/MMAX
+
 t = int(input())
 for _ in range(t):
     n = int(input())

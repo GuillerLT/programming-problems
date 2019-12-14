@@ -1,3 +1,7 @@
+/* Contest JUNE19B - Problem PROXYC
+ * https://www.codechef.com/JUNE19B/problems/PROXYC
+ */
+
 #include <iostream>
 #include <string>
 

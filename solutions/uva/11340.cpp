@@ -1,3 +1,7 @@
+/* Problem 11340
+ * https://onlinejudge.org/external/113/11340.pdf
+ */
+
 #include <cstdio>
 
 #include <iostream>

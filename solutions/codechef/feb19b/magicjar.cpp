@@ -1,3 +1,7 @@
+/* Contest FEB19B - Problem MAGICJAR
+ * https://www.codechef.com/FEB19B/problems/MAGICJAR
+ */
+
 #include <iostream>
 using namespace std;
 

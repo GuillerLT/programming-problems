@@ -1,3 +1,7 @@
+/* Contest DEC19B - Problem PLMU
+ * https://www.codechef.com/DEC19B/problems/PLMU
+ */
+
 #include <iostream>
 
 using namespace std;

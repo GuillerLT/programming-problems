@@ -1,3 +1,7 @@
+/* Contest DEC19B - Problem WATSCORE
+ * https://www.codechef.com/DEC19B/problems/WATSCORE
+ */
+
 #include <array>
 #include <iostream>
 

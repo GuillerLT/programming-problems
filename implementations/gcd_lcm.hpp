@@ -6,7 +6,7 @@ namespace glt {
 template <typename T>
 T gcd(T a, T b) {
   while (b != static_cast<T>(0)) {
-    long long const c = a % b;
+    T const c = a % b;
     a = b;
     b = c;
   }

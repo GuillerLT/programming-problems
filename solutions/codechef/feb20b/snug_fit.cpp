@@ -1,3 +1,7 @@
+/* Contest FEB20B - Problem SNUG_FIT
+ * https://www.codechef.com/FEB20B/problems/SNUG_FIT
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>

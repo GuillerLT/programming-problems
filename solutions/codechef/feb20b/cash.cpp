@@ -1,3 +1,7 @@
+/* Contest FEB20B - Problem CASH
+ * https://www.codechef.com/FEB20B/problems/CASH
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>

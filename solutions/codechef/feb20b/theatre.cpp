@@ -1,3 +1,7 @@
+/* Contest FEB20B - Problem THEATRE
+ * https://www.codechef.com/FEB20B/problems/THEATRE
+ */
+
 #include <algorithm>
 #include <array>
 #include <iostream>

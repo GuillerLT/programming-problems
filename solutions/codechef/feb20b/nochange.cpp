@@ -5,57 +5,46 @@
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <set>
+#include <vector>
 
 using namespace std;
 
-int a, b, c, p;
-
-bool foo(multiset<int> monedas, int total) {
-  if (total > p) {
-    int diff = total - p;
-    if (diff >= *monedas.cbegin()) {
-      return false;
-    } else {
-      // copy(monedas.cbegin(), monedas.cend(), ostream_iterator<int>(cout, " "));
-      // cout << endl;
-      return true;
+void sol(int const& p, vector<int> const& d) {
+  for (size_t i = 0; i < d.size(); ++i) {
+    if (p % d[i] != 0) {
+      cout << "YES";
+      for (size_t j = 0; j < i; ++j) cout << " 0";
+      cout << ' ' << p / d[i] + 1;
+      for (size_t j = i + 1; j < d.size(); ++j) cout << " 0";
+      return;
     }
-  } else {
-    bool r = false;
-    multiset<int> m;
-    m = monedas;
-    m.insert(a);
-    r |= foo(m, total + a);
-    m = monedas;
-    m.insert(b);
-    r |= foo(m, total + b);
-    m = monedas;
-    m.insert(c);
-    r |= foo(m, total + c);
-    return r;
   }
+  for (size_t i = 0; i < d.size(); ++i) {
+    for (size_t j = i + 1; j < d.size(); ++j) {
+      if (d[j] % d[i] != 0) {
+        cout << "YES";
+        for (size_t k = 0; k < i; ++k) cout << " 0";
+        cout << ' ' << p / d[i] - (d[j] / d[i]);
+        for (size_t k = i + 1; k < j; ++k) cout << " 0";
+        cout << " 1";
+        for (size_t k = j + 1; k < d.size(); ++k) cout << " 0";
+        return;
+      }
+    }
+  }
+  cout << "NO";
 }
 
 int main() {
-  srand(time(NULL));
-  int i = 0;
-  while (true) {
-    a = rand() % 10 + 1;
-    b = rand() % 10 + 1;
-    c = rand() % 10 + 1;
-    if (a == b || a == c || b == c) continue;
-    p = rand() % 25 + 1;
-    if (!foo(multiset<int>{}, 0)) {
-      cout << endl;
-      cout << a << endl;
-      cout << b << endl;
-      cout << c << endl;
-      cout << p << endl;
-      cout << endl;
-      return 0;
-    } else {
-      cout << i++ << endl;
-    }
+  auto it = istream_iterator<int>(cin);
+  int t = *it;
+  while (--t >= 0) {
+    int const n = *++it;
+    int const p = *++it;
+    vector<int> d;
+    copy_n(next(it), n, back_insert_iterator<vector<int>>(d));
+    sol(p, d);
+    cout << '\n';
   }
+  return 0;
 }

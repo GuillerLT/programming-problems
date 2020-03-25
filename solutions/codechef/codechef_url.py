@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 
 for d in os.listdir('.'):
@@ -8,7 +10,7 @@ for d in os.listdir('.'):
                 problem = os.path.splitext(f)[0].upper()
                 if not "problem" in open(os.path.join(d, f)).readline().lower():
                     with open('tmp', 'w') as new, open(os.path.join(d, f)) as old:
-                        if os.path.splitext(f)[1] == '.cpp':
+                        if os.path.splitext(f)[1] == '.cpp' or os.path.splitext(f)[1] == '.rs':
                             new.write(
                                 '/* Contest {} - Problem {}\n'.format(contest, problem))
                             new.write(

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 
 for f in os.listdir('.'):
@@ -6,7 +8,7 @@ for f in os.listdir('.'):
         prefix = problem[0:-2]
         if not "problem" in open(f).readline().lower():
             with open('tmp', 'w') as new, open(f) as old:
-                if os.path.splitext(f)[1] == '.cpp':
+                if os.path.splitext(f)[1] == '.cpp' or os.path.splitext(f)[1] == '.rs':
                     new.write(
                         '/* Problem {}\n'.format(problem))
                     new.write(

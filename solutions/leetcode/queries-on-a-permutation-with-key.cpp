@@ -1,3 +1,7 @@
+/* Problem queries-on-a-permutation-with-key
+ * https://www.leetcode.com/problems/queries-on-a-permutation-with-key
+ */
+
 #include <algorithm>
 #include <numeric>
 #include <vector>

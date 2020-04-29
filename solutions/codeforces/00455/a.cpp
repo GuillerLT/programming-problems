@@ -4,24 +4,20 @@
 
 #include <algorithm>
 #include <iostream>
-#include <tuple>
+#include <iterator>
 #include <vector>
+
 using namespace std;
 
-constexpr long long limit = 100000;
-
 int main() {
-  long long n;
-  cin >> n;
-  vector<long long> vt(limit + 3, 0);
-  for (long long i = 0; i < n; ++i) {
-    long long v;
-    cin >> v;
-    ++vt[v];
+  vector<long long> freq(100001, 0);
+  for (size_t i = *istream_iterator<size_t>(cin); i > 0; --i) {
+    size_t const ai = *istream_iterator<size_t>(cin);
+    freq[ai] += ai;
   }
-  for (long long i = limit; i >= 0; --i) {
-    vt[i] = max(vt[i] * i + vt[i + 2], vt[i + 1]);
+  for (size_t i = 2; i < 100001; ++i) {
+    freq[i] = max(freq[i - 1], freq[i] + freq[i - 2]);
   }
-  cout << vt.front() << "\n";
+  cout << freq.back() << '\n';
   return 0;
 }

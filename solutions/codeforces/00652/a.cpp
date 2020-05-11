@@ -20,7 +20,7 @@ int main() {
     cout << "-1\n";
   } else {
     int const t = ((h2 - h1) / (12 *(d - n))) + !!((h2 - h1) % (12 *(d - n)));
-    cout << t << endl;
+    cout << t << '\n';
   }
   return 0;
 }

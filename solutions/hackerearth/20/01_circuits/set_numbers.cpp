@@ -13,7 +13,7 @@ int main() {
     while(n >>= 1) {
       ++cnt;
     }
-    cout << ((~0U) >> (sizeof(int) * 8 - cnt)) << endl;
+    cout << ((~0U) >> (sizeof(int) * 8 - cnt)) << '\n';
   }
   return 0;
 }

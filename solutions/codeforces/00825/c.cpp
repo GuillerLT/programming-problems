@@ -23,5 +23,5 @@ int main() {
     }
     k = max(k, ai);
   });
-  cout << sol << endl;
+  cout << sol << '\n';
 }

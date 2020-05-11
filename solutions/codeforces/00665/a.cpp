@@ -21,5 +21,5 @@ int main() {
   while (t % fb != 0) ++t;
   while (t < 0) t += fb;
   while (t < min(m + ta, 1140)) t += fb, ++sol;
-  cout << sol << endl;
+  cout << sol << '\n';
 }

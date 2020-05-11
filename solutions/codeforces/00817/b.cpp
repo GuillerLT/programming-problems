@@ -24,7 +24,7 @@ int main() {
         n *= (it.second - i + 1);
         d *= i;
       }
-      cout << n / d << endl;
+      cout << n / d << '\n';
       break;
     }
   }

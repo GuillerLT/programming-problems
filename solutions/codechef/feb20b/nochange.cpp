@@ -42,7 +42,7 @@ int main() {
     int const n = *++it;
     int const p = *++it;
     vector<int> d;
-    copy_n(next(it), n, back_insert_iterator<vector<int>>(d));
+    copy_n(next(it), n, back_inserter(d));
     sol(p, d);
     cout << '\n';
   }

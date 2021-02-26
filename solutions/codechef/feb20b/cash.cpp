@@ -17,7 +17,7 @@ int main() {
     int n, k;
     cin >> n >> k;
     vector<int> a;
-    copy_n(istream_iterator<int>(cin), n, back_insert_iterator<vector<int>>(a));
+    copy_n(istream_iterator<int>(cin), n, back_inserter(a));
     cout << accumulate(a.cbegin(), a.cend(), 0, [k](int const b, int const c) -> int {
       return (b + c % k) % k;
     }) << '\n';

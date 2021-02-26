@@ -12,7 +12,7 @@ using namespace std;
 int main() {
   int const n = *istream_iterator<int>(cin);
   vector<int> vi;
-  copy_n(istream_iterator<int>(cin), n, back_insert_iterator<vector<int>>(vi));
+  copy_n(istream_iterator<int>(cin), n, back_inserter(vi));
   sort(vi.begin(), vi.end());
   int prev = vi.front(), d = numeric_limits<int>::max(), cnt = 0;
   for_each(next(vi.cbegin()), vi.cend(), [&prev, &d, &cnt](int const next) {

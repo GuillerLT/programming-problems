@@ -35,7 +35,7 @@ int main() {
   ans += accumulate(pp.cbegin(), pp.cbegin() + rp, 0LL);
   vector<int> pb;
   merge(pu.cbegin() + ru, pu.cend(), pp.cbegin() + rp, pp.cend(),
-        back_insert_iterator<vector<int>>(pb));
+        back_inserter(pb));
   size_t const rb = min(nb, pb.size());
   ans += accumulate(pb.cbegin(), pb.cbegin() + rb, 0LL);
   cout << (ru + rp + rb) << ' ' << ans << '\n';

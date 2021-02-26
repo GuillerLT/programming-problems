@@ -16,8 +16,8 @@ int main() {
     int n;
     cin >> n;
     vector<int> a, b;
-    copy_n(istream_iterator<int>(cin), n, back_insert_iterator<vector<int>>(a));
-    copy_n(istream_iterator<int>(cin), n, back_insert_iterator<vector<int>>(b));
+    copy_n(istream_iterator<int>(cin), n, back_inserter(a));
+    copy_n(istream_iterator<int>(cin), n, back_inserter(b));
     sort(a.begin(), a.end());
     sort(b.begin(), b.end());
     long long sol = 0;

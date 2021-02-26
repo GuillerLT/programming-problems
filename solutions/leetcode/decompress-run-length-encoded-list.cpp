@@ -11,7 +11,7 @@ class Solution {
   vector<int> decompressRLElist(vector<int>& nums) {
     vector<int> ans;
     for (size_t i = 0; i < nums.size(); i += 2) {
-      fill_n(back_insert_iterator<vector<int>>(ans), nums[i], nums[i + 1]);
+      fill_n(back_inserter(ans), nums[i], nums[i + 1]);
     }
     return ans;
   }

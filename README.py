@@ -1,31 +1,87 @@
-#!/usr/bin/python3
-
 import os
+from typing import Dict
 
-def readme():
-    def count_folder(dir):
-        count = 0
-        for e in (e for e in os.listdir(dir)):
-            e = dir + "/" + e
-            if os.path.isdir(e):
-                count += count_folder(e)
-            elif os.path.isfile(e) and "_url." not in e:
-                count += 1
-        return count
 
-    platforms_count = dict()
-    for d in (d for d in os.listdir("./problems/") if os.path.isdir("./problems/" + d)):
-        platforms_count[d] = count_folder("./problems/" + d)
-    platforms_count = sorted(platforms_count.items(), key=lambda plat_count: plat_count[1], reverse=True)
+def get_freq_lang(root: str, plat: str, dir: str) -> Dict[str, int]:
+    freq_lang = dict()
+    for entry in os.listdir(os.path.join(root, plat, dir)):
+        if os.path.isdir(os.path.join(root, plat, dir, entry)):
+            for (lang, freq) in get_freq_lang(root, plat, os.path.join(dir, entry)).items():
+                freq_lang[lang] = freq_lang.get(lang, 0) + freq
+        elif os.path.isfile(os.path.join(root, plat, dir, entry)):
+            lang = os.path.splitext(entry)[-1]
+            freq_lang[lang] = freq_lang.get(lang, 0) + 1
+    return freq_lang
 
+
+def get_freq_lang_plat(root: str) -> Dict[str, Dict[str, int]]:
+    freq_lang_plat = dict()
+    for plat in os.listdir(root):
+        if os.path.isdir(os.path.join(root, plat)):
+            freq_lang_plat[plat] = get_freq_lang(root, plat, "")
+    return freq_lang_plat
+
+
+platforms_name = {
+    "codechef":     "CodeChef",
+    "codeforces":   "Codeforces",
+    "ctci":         "Cracking the Coding Interview",
+    "hackerearth":  "HackerEarth",
+    "kattis":       "Kattis",
+    "leetcode":     "LeetCode",
+    "projecteuler": "Project Euler",
+    "uva":          "UVa Online Judge",
+}
+
+languages_name = {
+    ".cpp": "C++",
+    ".rs":  "Rust",
+    ".c":   "C",
+    ".py":  "Python",
+}
+
+
+def gen_readme(freq_lang_plat: Dict[str, Dict[str, int]]):
     with open("README.md", "w") as README:
+        # Platforms
+        README.write("# Platforms\n")
         README.write("Platform | # solutions\n")
         README.write("-------- | -----------\n")
-        total = 0
-        for (plat, count) in platforms_count:
-            total += count
-            README.write("{} | {}\n".format(plat, count))
-        README.write("**Total** | {}\n".format(total))
+        for (plat, freq) in sorted(
+            ((plat, sum(freq_lang.values()))
+             for (plat, freq_lang) in freq_lang_plat.items()),
+            key=lambda plat_freq: plat_freq[1],
+            reverse=True
+        ):
+            README.write("{} | {}\n".format(
+                platforms_name.get(plat, plat), freq))
+        README.write("**Total** | {}\n\n".format(
+            sum(sum(freq_lang.values())
+                for freq_lang in freq_lang_plat.values())
+        ))
+
+        # Solutions per language
+        README.write("# Languages\n")
+        README.write("Language | # solutions\n")
+        README.write("-------- | -----------\n")
+        for (lang, freq) in sorted(
+            ((lang, sum(freq_lang.get(lang, 0)
+                        for freq_lang in freq_lang_plat.values()))
+             for lang in set(lang
+                             for freq_lang in freq_lang_plat.values()
+                             for lang in freq_lang.keys())),
+            key=lambda lang_freq: lang_freq[1],
+            reverse=True
+        ):
+            README.write("{} | {}\n".format(
+                languages_name.get(lang, ""), freq))
+        README.write("**Total** | {}\n\n".format(
+            sum(
+                sum(freq_lang.values())
+                for freq_lang in freq_lang_plat.values()
+            )
+        ))
+
 
 if __name__ == "__main__":
-    readme()
+    gen_readme(get_freq_lang_plat("solutions"))

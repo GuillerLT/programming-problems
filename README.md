@@ -1,10 +1,21 @@
+# Platforms
 Platform | # solutions
 -------- | -----------
-codeforces | 178
-leetcode | 103
-codechef | 34
-hackerearth | 17
-uva | 15
-projecteuler | 4
-kattis | 1
+Codeforces | 178
+LeetCode | 103
+CodeChef | 34
+HackerEarth | 17
+UVa Online Judge | 15
+Project Euler | 4
+Kattis | 1
 **Total** | 352
+
+# Languages
+Language | # solutions
+-------- | -----------
+C++ | 334
+Rust | 16
+C | 1
+Python | 1
+**Total** | 352
+

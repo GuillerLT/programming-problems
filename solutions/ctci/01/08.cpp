@@ -4,7 +4,7 @@
 
 // Time O ( n * m ) | Space O( 1 )
 template <std::integral I>
-void zero_matrix(std::vector<std::vector<I>> matrix) {
+std::vector<std::vector<I>> zero_matrix(std::vector<std::vector<I>>&& matrix) {
   for (std::size_t row{1}; row < matrix.size(); ++row) {
     for (std::size_t col{1}; col < matrix[row].size(); ++col) {
       if (matrix[row][col] == 0) matrix[row][0] = matrix[0][col] = 0;
@@ -18,4 +18,5 @@ void zero_matrix(std::vector<std::vector<I>> matrix) {
     if (matrix[0][col] == 0)
       for (std::size_t row{0}; row < matrix.size(); ++row)
         matrix[row][col] = 0;
+  return std::move(matrix);
 }

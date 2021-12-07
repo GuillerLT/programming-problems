@@ -2,6 +2,7 @@ import os
 from typing import Dict
 
 platforms_name = {
+    "adventofcode": "Advent of Code",
     "codechef":     "CodeChef",
     "codeforces":   "Codeforces",
     "ctci":         "Cracking the Coding Interview",

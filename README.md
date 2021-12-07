@@ -8,15 +8,16 @@ Cracking the Coding Interview | 23
 HackerEarth | 17
 UVa Online Judge | 15
 Project Euler | 4
+Advent of Code | 1
 Kattis | 1
-**Total** | 378
+**Total** | 379
 
 # Languages
 Language | # solutions
 -------- | -----------
-C++ | 360
+C++ | 361
 Rust | 16
-Python | 1
 C | 1
-**Total** | 378
+Python | 1
+**Total** | 379
 

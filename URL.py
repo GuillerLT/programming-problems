@@ -8,6 +8,7 @@ languages_comment = {
 }
 
 platforms_url = {
+    "adventofcode": ("https://adventofcode.com", "/{0}/day/{1}"),
     "codechef":     ("https://www.codechef.com", "/{0}/problems/{1}"),
     "codeforces":   ("https://codeforces.com",   "/problemset/problem/{0}/{1}"),
     "kattis":       ("https://open.kattis.com",  "/problems/{0}"),
@@ -21,8 +22,22 @@ platforms_url = {
 def create_url_0(plat: str, dir: str, file: str):
     return ""
 
-# CodeChef & Codeforces
+# Advent of Code
 def create_url_1(plat: str, dir: str, file: str):
+    return (
+        "{0} Year {{0}} - Day {{1}}\n"
+        "{1} {3}{4}\n"
+        "{2}\n\n"
+    ).format(
+        *languages_comment.get(os.path.splitext(file)[-1], ("", "", "")),
+        *platforms_url.get(plat, ("", "{}{}"))
+    ).format(
+        dir.lstrip("0").upper(),                       # Year
+        os.path.splitext(file)[0].lstrip("0").upper()  # Day
+    )
+
+# CodeChef & Codeforces
+def create_url_2(plat: str, dir: str, file: str):
     return (
         "{0} Contest {{0}} - Problem {{1}}\n"
         "{1} {3}{4}\n"
@@ -36,7 +51,7 @@ def create_url_1(plat: str, dir: str, file: str):
     )
 
 # Kattis & LeetCode & Project Euler
-def create_url_2(plat: str, dir: str, file: str):
+def create_url_3(plat: str, dir: str, file: str):
     return (
         "{0} Problem {{0}}\n"
         "{1} {3}{4}\n"
@@ -47,7 +62,7 @@ def create_url_2(plat: str, dir: str, file: str):
     )
 
 # UVa Online Judge
-def create_url_3(plat: str, dir: str, file: str):
+def create_url_4(plat: str, dir: str, file: str):
     return (
         "{0} Problem {{0}}\n"
         "{1} {3}{4}\n"
@@ -62,12 +77,13 @@ def create_url_3(plat: str, dir: str, file: str):
 
 
 platforms_url_creator = {
-    "codechef":     create_url_1,
-    "codeforces":   create_url_1,
-    "kattis":       create_url_2,
-    "leetcode":     create_url_2,
-    "projecteuler": create_url_2,
-    "uva":          create_url_3,
+    "adventofcode": create_url_1,
+    "codechef":     create_url_2,
+    "codeforces":   create_url_2,
+    "kattis":       create_url_3,
+    "leetcode":     create_url_3,
+    "projecteuler": create_url_3,
+    "uva":          create_url_4,
 }
 
 

@@ -94,8 +94,9 @@ def add_url_file(root: str, plat: str, dir: str, file: str):
     with open(os.path.join(root, plat, dir, file), 'r') as old:
         data = old.read()
     if plat in platforms_url_creator and not platforms_url[plat][0] in data:
+        url = platforms_url_creator[plat](plat, dir, file)
         with open(os.path.join(root, plat, dir, file), 'w') as new:
-            new.write(platforms_url_creator.get(plat, create_url_0)(plat, dir, file))
+            new.write(url)
             new.write(data)
 
 

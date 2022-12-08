@@ -7,17 +7,17 @@ CodeChef | 34
 Cracking the Coding Interview | 24
 HackerEarth | 17
 UVa Online Judge | 15
-Advent of Code | 9
+Advent of Code | 11
 Project Euler | 4
 Kattis | 1
-**Total** | 398
+**Total** | 400
 
 # Languages
 Language | # solutions
 -------- | -----------
 C++ | 364
-Rust | 32
-C | 1
+Rust | 34
 Python | 1
-**Total** | 398
+C | 1
+**Total** | 400
 

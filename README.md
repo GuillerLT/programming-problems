@@ -5,19 +5,19 @@ Codeforces | 182
 LeetCode | 145
 CodeChef | 34
 Cracking the Coding Interview | 24
-Advent of Code | 20
+Advent of Code | 22
 HackerEarth | 17
 UVa Online Judge | 15
 Project Euler | 4
 Kattis | 1
-**Total** | 442
+**Total** | 444
 
 # Languages
 Language | # solutions
 -------- | -----------
 C++ | 364
-Rust | 76
-Python | 1
+Rust | 78
 C | 1
-**Total** | 442
+Python | 1
+**Total** | 444
 

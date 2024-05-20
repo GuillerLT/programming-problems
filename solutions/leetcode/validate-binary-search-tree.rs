@@ -2,38 +2,46 @@
  * https://www.leetcode.com/problems/validate-binary-search-tree
  */
 
-struct Solution;
-
-use std::cell::RefCell;
-use std::rc::Rc;
-
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
 	pub val: i32,
-	pub left: Option<Rc<RefCell<TreeNode>>>,
-	pub right: Option<Rc<RefCell<TreeNode>>>,
+	pub left: Option<std::rc::Rc<std::cell::RefCell<TreeNode>>>,
+	pub right: Option<std::rc::Rc<std::cell::RefCell<TreeNode>>>,
 }
 
+impl TreeNode {
+	#[inline]
+	pub fn new(val: i32) -> Self {
+		TreeNode {
+			val,
+			left: None,
+			right: None,
+		}
+	}
+}
+
+struct Solution;
+
+use std::cell::RefCell;
+use std::rc::Rc;
 impl Solution {
-	fn is_valid_bst_impl(
-		root: &Option<Rc<RefCell<TreeNode>>>,
-		lower_boud: i64,
-		upper_bound: i64,
-	) -> bool {
-		root.as_ref().map_or(true, |node| {
-			let node = node.borrow();
-			let val = node.val.into();
-			val > lower_boud
-				&& val < upper_bound
-				&& Self::is_valid_bst_impl(&node.left, lower_boud, val)
-				&& Self::is_valid_bst_impl(&node.right, val, upper_bound)
-		})
-	}
-
 	pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-		Self::is_valid_bst_impl(&root, i64::MIN, i64::MAX)
+		is_valid_bst_impl(root, None, None)
 	}
 }
 
-pub fn main() {}
+fn is_valid_bst_impl(
+	root: Option<Rc<RefCell<TreeNode>>>,
+	lower: Option<i32>,
+	upper: Option<i32>,
+) -> bool {
+	let Some(root) = root else { return true };
+	let val = root.borrow().val;
+	lower.map_or(true, |lower| val > lower)
+		&& upper.map_or(true, |upper| val < upper)
+		&& is_valid_bst_impl(root.borrow().left.clone(), lower, Some(val))
+		&& is_valid_bst_impl(root.borrow().right.clone(), Some(val), upper)
+}
+
+fn main() {}
